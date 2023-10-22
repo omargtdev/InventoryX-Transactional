@@ -1,4 +1,5 @@
 ﻿using InventoryX_Transactional.Data.Models;
+using InventoryX_Transactional.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -49,5 +50,6 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Client>
             .IsRequired();
 
         builder.ToTable(nameof(Client));
+        builder.HasData(ClientSeed.Data);
     }
 }

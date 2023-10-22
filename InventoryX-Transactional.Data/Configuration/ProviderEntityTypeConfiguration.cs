@@ -1,4 +1,5 @@
 ﻿using InventoryX_Transactional.Data.Models;
+using InventoryX_Transactional.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -44,5 +45,6 @@ public class ProviderEntityTypeConfiguration : IEntityTypeConfiguration<Provider
             .IsRequired();
 
         builder.ToTable(nameof(Provider));
+        builder.HasData(ProviderSeed.Data);
     }
 }
