@@ -13,6 +13,9 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Client>
             .HasMaxLength(100)
             .IsRequired();
 
+        builder.Property(c => c.DocumentType)
+            .IsRequired();
+
         builder.Property(c => c.DocumentNumber)
             .HasMaxLength(20)
             .IsUnicode(false)
@@ -32,7 +35,6 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Client>
             .HasMaxLength(200);
 
         builder.Property(c => c.IsLegal)
-            .HasDefaultValue(true)
             .IsRequired();
 
         builder.Property(c => c.IsDeleted)
