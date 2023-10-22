@@ -7,26 +7,21 @@ namespace InventoryX_Transactional.Repository;
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
     private readonly InventoryXDbContext _context;
-    private readonly DbSet<T> _dbSet;
 
     public GenericRepository(InventoryXDbContext context)
     {
         _context = context; 
-        _dbSet = _context.Set<T>();
     }
 
     public async Task<T?> GetByIdAsync(object id) =>
-        await _dbSet.FindAsync(id);
+        await _context.Set<T>().FindAsync(id);
 
     public async Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> condition) =>
-        await _dbSet.Where(condition).ToListAsync();
+        await _context.Set<T>().Where(condition).ToListAsync();
 
-    public void Add(T entity) => _dbSet.Add(entity);
+    public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);
 
-    public void Update(T entity) => _dbSet.Update(entity);
+    public void Update(T entity) => _context.Set<T>().Update(entity);
 
-    public void Delete(T entity) => _dbSet.Remove(entity);
-
-    public Task SaveAsync() => _context.SaveChangesAsync();
-
+    public void Delete(T entity) => _context.Set<T>().Remove(entity);
 }
