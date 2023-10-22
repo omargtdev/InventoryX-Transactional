@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>InventoryX_Transactional.API</RootNamespace>
+    <UserSecretsId>76e8c854-b6f6-44a8-aa4e-ba73c22a61cd</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
