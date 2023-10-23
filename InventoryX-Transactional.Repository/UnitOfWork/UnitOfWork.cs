@@ -1,6 +1,6 @@
 ﻿using InventoryX_Transactional.Data;
 using InventoryX_Transactional.Data.Models;
-using Microsoft.EntityFrameworkCore;
+using InventoryX_Transactional.Repository.Common;
 
 namespace InventoryX_Transactional.Repository.UnitOfWork;
 

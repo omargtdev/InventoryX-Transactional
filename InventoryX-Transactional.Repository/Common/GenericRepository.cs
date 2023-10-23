@@ -2,11 +2,11 @@
 using InventoryX_Transactional.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace InventoryX_Transactional.Repository;
+namespace InventoryX_Transactional.Repository.Common;
 
 public class GenericRepository<T> : IGenericRepository<T> where T : class
 {
-    private readonly InventoryXDbContext _context;
+    protected InventoryXDbContext _context;
 
     public GenericRepository(InventoryXDbContext context)
     {

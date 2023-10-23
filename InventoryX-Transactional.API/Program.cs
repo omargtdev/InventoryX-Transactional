@@ -1,5 +1,6 @@
-using InventoryX_Transactional.Data;
 using Microsoft.EntityFrameworkCore;
+using InventoryX_Transactional.API.Extensions;
+using InventoryX_Transactional.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<InventoryXDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("InventoryxDb"));
 });
+builder.Services.AddRepositories();
+builder.Services.AddServices();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

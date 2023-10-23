@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace InventoryX_Transactional.Repository;
+namespace InventoryX_Transactional.Repository.Common;
 
 public interface IGenericRepository<T>
 {

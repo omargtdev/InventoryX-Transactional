@@ -19,6 +19,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\InventoryX-Transactional.Data\InventoryX-Transactional.Data.csproj" />
+    <ProjectReference Include="..\InventoryX-Transactional.Repository\InventoryX-Transactional.Repository.csproj" />
+    <ProjectReference Include="..\InventoryX-Transactional.Services\InventoryX-Transactional.Services.csproj" />
   </ItemGroup>
 
 </Project>
