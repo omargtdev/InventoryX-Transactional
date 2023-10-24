@@ -19,9 +19,9 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
     public async Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> condition) =>
         await _context.Set<T>().Where(condition).ToListAsync();
 
-    public async Task AddAsync(T entity) => await _context.Set<T>().AddAsync(entity);
+    public async Task<T> AddAsync(T entity) => (await _context.Set<T>().AddAsync(entity)).Entity;
 
-    public void Update(T entity) => _context.Set<T>().Update(entity);
+    public T Update(T entity) => _context.Set<T>().Update(entity).Entity;
 
     public void Delete(T entity) => _context.Set<T>().Remove(entity);
 }
