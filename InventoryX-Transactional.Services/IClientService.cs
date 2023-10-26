@@ -7,5 +7,5 @@ public interface IClientService
     Task<ClientDTO> GetClientById(Guid guid);
     Task<ClientDTO> CreateClient(NewClientDTO client);
     Task<ClientDTO> UpdateClient(UpdateClientDTO client);
-    Task<ClientDTO> DeleteClient(Guid guid);
+    Task DeleteClient(Guid guid);
 }

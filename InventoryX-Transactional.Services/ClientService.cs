@@ -19,7 +19,7 @@ public class ClientService : IClientService
 
     public async Task<ClientDTO> GetClientById(Guid guid)
     {
-        var client = await _clientRepository.GetByIdAsync(guid)
+        var client = await _clientRepository.GetByIdAsync(guid);
             ?? throw new ResourceNotFoundException("Client cannot be found.");
 
         return _mapper.Map<ClientDTO>(client);
@@ -27,20 +27,20 @@ public class ClientService : IClientService
 
     public async Task<List<ClientDTO>> GetClients()
     {
-        var clients = await _clientRepository.GetByConditionAsync(c => true);
+        var clients = await _clientRepository.GetByConditionAsync(c => !c.IsDeleted);
         return clients.Select(c => _mapper.Map<ClientDTO>(c)).ToList();
     }
 
     public async Task<ClientDTO> UpdateClient(UpdateClientDTO client)
     {
-        var clientFound = await _clientRepository.GetByIdAsync(client.ClientId);
+        var clientFound = await _clientRepository.GetByConditionAsync(c => c.ClientId == client.ClientId && !c.IsDeleted);
         if(clientFound == null)
             throw new ResourceNotFoundException("Client cannot be found.");
 
         ValidateDocumentTypeWhenClientIsLegal(client);
         ValidateDocumentTypeLength(client.DocumentType, client.DocumentNumber);
 
-        var clientByEmail = (await _clientRepository.GetByConditionAsync(c => c.Email == client.Email)).FirstOrDefault();
+        var clientByEmail = (await _clientRepository.GetByConditionAsync(c => c.Email == client.Email && !c.IsDeleted && c.ClientId != client.ClientId)).FirstOrDefault();
         if(clientByEmail != null)
             throw new EmailAlreadyExistForClientException("The email has already been taken.");
 
@@ -55,7 +55,7 @@ public class ClientService : IClientService
         ValidateDocumentTypeWhenClientIsLegal(client);
         ValidateDocumentTypeLength(client.DocumentType, client.DocumentNumber);
         
-        var clientByEmail = (await _clientRepository.GetByConditionAsync(c => c.Email == client.Email)).FirstOrDefault();
+        var clientByEmail = (await _clientRepository.GetByConditionAsync(c => c.Email == client.Email && !c.IsDeleted)).FirstOrDefault();
         if(clientByEmail != null)
             throw new EmailAlreadyExistForClientException("The email has already been taken.");
 
@@ -65,9 +65,17 @@ public class ClientService : IClientService
         return _mapper.Map<ClientDTO>(clientCreated);
     }
 
-    public Task<ClientDTO> DeleteClient(Guid guid)
+    public async Task DeleteClient(Guid guid)
     {
-        throw new NotImplementedException();
+        var clientFound = (await _clientRepository.GetByConditionAsync(c => c.ClientId == guid && !c.IsDeleted)).FirstOrDefault();
+        if(clientFound == null)
+            throw new ResourceNotFoundException("Client cannot be found.");
+
+        clientFound.IsDeleted = true;
+        clientFound.ModifiedAt = DateTime.Now;
+
+        _clientRepository.Update(clientFound);
+        await _clientRepository.SaveAsync();
     }
 
     private void ValidateDocumentTypeWhenClientIsLegal(NewClientDTO client)

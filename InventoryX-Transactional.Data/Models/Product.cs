@@ -2,7 +2,7 @@
 
 namespace InventoryX_Transactional.Data.Models;
 
-public class Product : Audit
+public class Product : BaseEntity
 {
     public int ProductId { get; set; }
     public string Name { get; set; }

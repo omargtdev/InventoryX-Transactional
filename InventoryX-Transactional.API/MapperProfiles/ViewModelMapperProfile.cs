@@ -11,6 +11,7 @@ public class ViewModelMapperProfile : Profile
     {
         CreateMap<ClientDTO, ClientViewModel>();
         CreateMap<NewClientViewModel, NewClientDTO>();
+        CreateMap<UpdateClientViewModel, UpdateClientDTO>();
 
         CreateMap<BaseException, ResponseErrorViewModel>()
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.ExceptionName));

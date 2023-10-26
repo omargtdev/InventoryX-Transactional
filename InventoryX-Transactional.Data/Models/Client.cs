@@ -2,7 +2,7 @@
 
 namespace InventoryX_Transactional.Data.Models;
 
-public class Client : Audit
+public class Client : BaseEntity
 {
     public Guid ClientId { get; set; }
     public string Name { get; set; }

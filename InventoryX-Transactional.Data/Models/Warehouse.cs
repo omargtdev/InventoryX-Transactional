@@ -2,7 +2,7 @@
 
 namespace InventoryX_Transactional.Data.Models;
 
-public class Warehouse : Audit
+public class Warehouse : BaseEntity
 {
     public int WarehouseId { get; set; }
     public string Description { get; set; }
