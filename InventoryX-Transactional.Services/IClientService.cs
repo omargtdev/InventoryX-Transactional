@@ -1,5 +1,11 @@
-﻿namespace InventoryX_Transactional.Services;
+﻿using InventoryX_Transactional.Services.DTOs.Client;
+
+namespace InventoryX_Transactional.Services;
 public interface IClientService
 {
-    Task<dynamic> GetClients();
+    Task<List<ClientDTO>> GetClients();
+    Task<ClientDTO> GetClientById(Guid guid);
+    Task<ClientDTO> CreateClient(NewClientDTO client);
+    Task<ClientDTO> UpdateClient(UpdateClientDTO client);
+    Task<ClientDTO> DeleteClient(Guid guid);
 }
