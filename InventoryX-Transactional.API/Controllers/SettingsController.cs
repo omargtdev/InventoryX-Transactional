@@ -13,16 +13,16 @@ public class SettingsController : ControllerBase
         _configuration = configuration;
     }
 
-    [HttpGet]
-    public IActionResult Settings()
-    {
-        return Ok(new
-        {
-            LoggingLogLevel = _configuration.GetValue<string>("Logging:LogLevel:Default"),
-            IdentityApi = _configuration.GetValue<string>("Api:Identity"),
-            ConnectionString = _configuration.GetConnectionString("InventoryxDb")
-        });
+    // [HttpGet]
+    // public IActionResult Settings()
+    // {
+    //     return Ok(new
+    //     {
+    //         LoggingLogLevel = _configuration.GetValue<string>("Logging:LogLevel:Default"),
+    //         IdentityApi = _configuration.GetValue<string>("Api:Identity"),
+    //         ConnectionString = _configuration.GetConnectionString("InventoryxDb")
+    //     });
 
-    }
+    // }
 
 }
