@@ -96,8 +96,9 @@ public class ClientController : ControllerBase
             if(!ModelState.IsValid)    
                 return BadRequest(ModelState.Values.SelectMany(v => v.Errors));
             
-            clientToUpdate.Id = clientId;
-            var client = await _clientService.UpdateClient(_mapper.Map<UpdateClientDTO>(clientToUpdate));
+            var clientMapped =_mapper.Map<UpdateClientDTO>(clientToUpdate); 
+            clientMapped.ClientId = clientId;
+            var client = await _clientService.UpdateClient(clientMapped);
             
             return Ok(client);
         }

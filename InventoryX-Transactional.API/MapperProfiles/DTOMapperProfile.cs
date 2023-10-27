@@ -15,6 +15,5 @@ public class DTOMapperProfile : Profile
             .ForMember(dest => dest.ClientId, opt => opt.MapFrom(src => Guid.NewGuid()));
         CreateMap<UpdateClientDTO, Client>()
             .ForMember(dest => dest.ModifiedAt, opt => opt.MapFrom(src => DateTime.Now));
-        
     }
 }

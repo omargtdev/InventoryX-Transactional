@@ -14,8 +14,8 @@ public class ClientViewModel
     public string Phone { get; set; } = null!;
     public string? Address { get; set; }
     public bool IsLegal { get; set; }
-    public Guid CreatedBy { get; set; }
+    public string CreatedBy { get; set; } = null!;
     public DateTime CreatedAt { get; set; }
-    public Guid ModifiedBy { get; set; }
+    public string ModifiedBy { get; set; } = null!;
     public DateTime ModifiedAt { get; set; }
 }
