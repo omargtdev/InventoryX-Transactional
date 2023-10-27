@@ -17,9 +17,11 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
     public async Task<T?> GetByIdAsync(object id)
     {
         var entity = await _context.Set<T>().FindAsync(id);
-        return entity != null && !entity.IsDeleted
-            ? entity
-            : null;
+        if(entity == null || entity.IsDeleted)
+            return null;
+
+        _context.Entry(entity).State = EntityState.Detached;
+        return entity;
     }
 
 
@@ -35,6 +37,8 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         var dbSet = _context.Set<T>();
         var entityFounded = dbSet.Find(id);
         if(entityFounded == null)
+            return RepositoryOperation.Failed;
+        if(entityFounded.IsDeleted)
             return RepositoryOperation.Failed;
 
         entityFounded.IsDeleted = true;
