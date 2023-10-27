@@ -14,7 +14,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Augue Corporation",
                     RUC = "28851161316",
@@ -25,7 +25,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Feugiat Nec Foundation",
                     RUC = "21425812564",
@@ -36,7 +36,7 @@ public static class ProviderSeed
                 new () 
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Dis Parturient Montes Associates",
                     RUC = "20907865658",
@@ -47,7 +47,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Egestas Rhoncus Corp.",
                     RUC = "21438271486",
@@ -58,7 +58,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Nullam Nisl Maecenas PC",
                     RUC = "23414517112",
@@ -69,7 +69,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Turpis Egestas Fusce Inc.",
                     RUC = "20534218461",
@@ -80,7 +80,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Sem Limited",
                     RUC = "27145868620",
@@ -91,7 +91,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Elit A Feugiat Corp.",
                     RUC = "28163725354",
@@ -102,7 +102,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Vitae Velit LLC",
                     RUC = "20177426605",
@@ -113,7 +113,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Lorem Ipsum Institute",
                     RUC = "24334730132",
@@ -124,7 +124,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "At Associates",
                     RUC = "25016570928",
@@ -135,7 +135,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Nibh Donec Est Institute",
                     RUC = "24821225133",
@@ -146,7 +146,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Erat Volutpat Inc.",
                     RUC = "21546823173",
@@ -157,7 +157,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Proin Eget Institute",
                     RUC = "24419741745",
@@ -168,7 +168,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Laoreet Posuere Ltd",
                     RUC = "20381813145",
@@ -179,7 +179,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "In Foundation",
                     RUC = "23374028741",
@@ -190,7 +190,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Suspendisse Tristique Neque Foundation",
                     RUC = "23886134764",
@@ -201,7 +201,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Malesuada Associates",
                     RUC = "28654072941",
@@ -212,7 +212,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Enim Sit Ltd",
                     RUC = "28352851057",
@@ -223,7 +223,7 @@ public static class ProviderSeed
                 new ()
                 {
                     ProviderId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     BusinessName = "Massa Limited",
                     RUC = "22184652687",
