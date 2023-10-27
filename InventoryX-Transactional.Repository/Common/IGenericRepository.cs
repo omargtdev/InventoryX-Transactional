@@ -8,5 +8,5 @@ public interface IGenericRepository<T>
     Task<IEnumerable<T>> GetByConditionAsync(Expression<Func<T, bool>> condition);
     Task<T> AddAsync(T entity);
     T Update(T entity);
-    void Delete(T entity); 
+    RepositoryOperation Delete(object id); 
 }

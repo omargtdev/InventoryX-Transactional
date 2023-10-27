@@ -4,6 +4,7 @@ using InventoryX_Transactional.Repository;
 using InventoryX_Transactional.Services.DTOs.Client;
 using InventoryX_Transactional.Services.Exceptions;
 using InventoryX_Transactional.Services.Exceptions.Client;
+using Microsoft.Extensions.Logging;
 
 namespace InventoryX_Transactional.Services;
 
@@ -11,10 +12,12 @@ public class ClientService : IClientService
 {
     private readonly IClientRepository _clientRepository;
     private readonly IMapper _mapper;
-    public ClientService(IClientRepository clientRepository, IMapper mapper)
+    private readonly ILogger _logger;
+    public ClientService(IClientRepository clientRepository, IMapper mapper, ILogger<Client> logger)
     {
         _clientRepository = clientRepository;
         _mapper = mapper;
+        _logger = logger;
     }
 
     public async Task<ClientDTO> GetClientById(Guid guid)
@@ -40,11 +43,17 @@ public class ClientService : IClientService
         ValidateDocumentTypeWhenClientIsLegal(client);
         ValidateDocumentTypeLength(client.DocumentType, client.DocumentNumber);
 
-        var clientByEmail = (await _clientRepository.GetByConditionAsync(c => c.Email == client.Email)).FirstOrDefault();
+        _logger.LogInformation("ClientID: {clientIdFromDto}", client.ClientId);
+        var clientByEmail = (await _clientRepository.GetByConditionAsync(c => c.Email == client.Email && c.ClientId != client.ClientId)).FirstOrDefault();
         if(clientByEmail != null)
             throw new EmailAlreadyExistForClientException("The email has already been taken.");
 
-        var clientUpdated = _clientRepository.Update(_mapper.Map<Client>(client));
+        var clientToUpdate = _mapper.Map<Client>(client);
+        clientToUpdate.CreatedBy = clientFound.CreatedBy;
+        clientToUpdate.CreatedAt = clientFound.CreatedAt;
+        clientToUpdate.ModifiedBy = client.ActionBy;
+
+        var clientUpdated = _clientRepository.Update(clientToUpdate);
         await _clientRepository.SaveAsync();
 
         return _mapper.Map<ClientDTO>(clientUpdated);
@@ -59,15 +68,21 @@ public class ClientService : IClientService
         if(clientByEmail != null)
             throw new EmailAlreadyExistForClientException("The email has already been taken.");
 
-        var clientCreated = await _clientRepository.AddAsync(_mapper.Map<Client>(client));
+        var clientToCreate  = _mapper.Map<Client>(client);
+        clientToCreate.CreatedBy = ""; // For now
+
+        var clientCreated = await _clientRepository.AddAsync(clientToCreate);
         await _clientRepository.SaveAsync();
 
         return _mapper.Map<ClientDTO>(clientCreated);
     }
 
-    public Task<ClientDTO> DeleteClient(Guid guid)
+    public async Task DeleteClient(Guid guid)
     {
-        throw new NotImplementedException();
+        var result = _clientRepository.Delete(guid);
+        if(result == RepositoryOperation.Failed)
+            throw new ResourceNotFoundException("Client cannot be found.");
+        await _clientRepository.SaveAsync();
     }
 
     private void ValidateDocumentTypeWhenClientIsLegal(NewClientDTO client)

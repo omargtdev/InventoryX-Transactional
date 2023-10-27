@@ -15,7 +15,7 @@ public static class ClientSeed
                 new()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Alice Chains",
                     DocumentType = DocumentType.DNI,
@@ -28,7 +28,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Pepitos S.A.C",
                     DocumentType = DocumentType.RUC,
@@ -41,7 +41,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Charlie Martinez",
                     DocumentType = DocumentType.DNI,
@@ -54,7 +54,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "David Aguilar",
                     DocumentType = DocumentType.ImmigrationCard,
@@ -67,7 +67,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Eve Medina",
                     DocumentType = DocumentType.RUC,
@@ -80,7 +80,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Frank Jones",
                     DocumentType = DocumentType.DNI,
@@ -93,7 +93,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Grace",
                     DocumentType = DocumentType.ImmigrationCard,
@@ -106,7 +106,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Holly Store S.A.",
                     DocumentType = DocumentType.RUC,
@@ -119,7 +119,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Ivy Williams",
                     DocumentType = DocumentType.DNI,
@@ -132,7 +132,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Jack Smith",
                     DocumentType = DocumentType.ImmigrationCard,
@@ -145,7 +145,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Karen Riques",
                     DocumentType = DocumentType.DNI,
@@ -158,7 +158,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Liam Nesson",
                     DocumentType = DocumentType.ImmigrationCard,
@@ -171,7 +171,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Mia Shop",
                     DocumentType = DocumentType.RUC,
@@ -184,7 +184,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Noah Azora",
                     DocumentType = DocumentType.DNI,
@@ -197,7 +197,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Olivia Fernandez",
                     DocumentType = DocumentType.ImmigrationCard,
@@ -210,7 +210,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Parker Corp.",
                     DocumentType = DocumentType.RUC,
@@ -223,7 +223,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Client Eastwood",
                     DocumentType = DocumentType.DNI,
@@ -236,7 +236,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Ryan Dominguez",
                     DocumentType = DocumentType.ImmigrationCard,
@@ -249,7 +249,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Sofia Bazar",
                     DocumentType = DocumentType.RUC,
@@ -262,7 +262,7 @@ public static class ClientSeed
                 new ()
                 {
                     ClientId = Guid.NewGuid(),
-                    CreatedBy = Guid.Parse(AdminId),
+                    CreatedBy = AdminId,
                     CreatedAt = DateTime.Now,
                     Name = "Thomas Philipp",
                     DocumentType = DocumentType.DNI,

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Web;
+using AutoMapper;
 using InventoryX_Transactional.API.ViewModels;
 using InventoryX_Transactional.Services;
 using InventoryX_Transactional.Services.DTOs.Client;
@@ -31,15 +32,11 @@ public class ClientController : ControllerBase
 
     [HttpGet]
     [Route("{clientId}")]
-    public async Task<ActionResult<ClientViewModel>> GetClientById(string clientId)
+    public async Task<ActionResult<ClientViewModel>> GetClientById(Guid clientId)
     {
         try
         {
-            var isValidGuid = Guid.TryParse(clientId, out Guid id);
-            if (!isValidGuid)
-                return BadRequest(new { message = $"Invalid client id: {clientId}" });
-
-            var client = await _clientService.GetClientById(id);
+            var client = await _clientService.GetClientById(clientId);
             
             return Ok(_mapper.Map<ClientViewModel>(client));
         }
@@ -69,7 +66,7 @@ public class ClientController : ControllerBase
                 return BadRequest(ModelState.Values.SelectMany(v => v.Errors));
             
             var client = await _clientService.CreateClient(_mapper.Map<NewClientDTO>(newClient));
-            return Ok(client);
+            return CreatedAtAction(null, client);
         }
         catch (Exception ex)
         {
@@ -90,5 +87,65 @@ public class ClientController : ControllerBase
         }
     }
 
+    [HttpPut]
+    [Route("{clientId}")]
+    public async Task<IActionResult> UpdateClient(Guid clientId, [FromBody] UpdateClientViewModel clientToUpdate)
+    {
+        try
+        {
+            if(!ModelState.IsValid)    
+                return BadRequest(ModelState.Values.SelectMany(v => v.Errors));
+            
+            var clientMapped =_mapper.Map<UpdateClientDTO>(clientToUpdate); 
+            clientMapped.ClientId = clientId;
+            var client = await _clientService.UpdateClient(clientMapped);
+            
+            return Ok(client);
+        }
+        catch (Exception ex)
+        {
+            return ex switch
+            {
+                ResourceNotFoundException or
+                InvalidDocumentTypeForLegalClientException or 
+                InvalidDocumentNumberLengthException or 
+                EmailAlreadyExistForClientException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
+                _ => StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseErrorViewModel
+                    {
+                        Type = "ServerError",
+                        Message = ex.Message
+                    }
+                ),
+            };
+        }
+    }
+
+    [HttpDelete]
+    [Route("{clientId}")]
+    public async Task<IActionResult> DeleteClient(Guid clientId)
+    {
+        try
+        {
+            await _clientService.DeleteClient(clientId);
+            return NoContent();
+        }
+        catch (Exception ex)
+        {
+            return ex switch
+            {
+                ResourceNotFoundException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
+                _ => StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseErrorViewModel
+                    {
+                        Type = "ServerError",
+                        Message = ex.Message
+                    }
+                ),
+            };
+        }
+    }
 
 }
