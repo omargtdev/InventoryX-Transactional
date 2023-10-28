@@ -10,6 +10,7 @@ public static class ServicesExtension
         services.AddAutoMapper(typeof(DTOMapperProfile), typeof(ViewModelMapperProfile));
 
         services.AddScoped<IClientService, ClientService>();
+        services.AddScoped<IProviderService, ProviderService>();
 
         return services;
     }

@@ -14,6 +14,7 @@ public static class RepositoriesExtension
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IClientRepository, ClientRepository>();
+        services.AddScoped<IProviderRepository, ProviderRepository>();
 
         return services;
     }
