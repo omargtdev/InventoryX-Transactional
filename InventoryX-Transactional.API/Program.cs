@@ -4,6 +4,18 @@ using InventoryX_Transactional.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
+string myAllowSpecificOrigins = "_myAllowSpecificOrigins";
+builder.Services.AddCors(options => 
+{
+    options.AddPolicy(name: myAllowSpecificOrigins,
+        policy => 
+        {
+            policy.WithOrigins("http://localhost:5500") // dev
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+});
+
 // Add services to the container.
 builder.Services.AddDbContext<InventoryXDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("InventoryxDb"));
@@ -25,6 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(myAllowSpecificOrigins);
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
