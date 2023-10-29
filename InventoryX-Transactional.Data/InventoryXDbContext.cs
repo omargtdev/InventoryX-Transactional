@@ -10,11 +10,13 @@ public class InventoryXDbContext : DbContext
     public DbSet<Client> Clients { get; set; }
     public DbSet<Provider> Providers { get; set; }
     public DbSet<Category> Categories { get; set; }
+    public DbSet<Warehouse> Warehouses { get; set; }
    
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientEntityTypeConfiguration).Assembly);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProviderEntityTypeConfiguration).Assembly);
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(CategoryEntityTypeConfiguration).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(WarehouseEntityTypeConfiguration).Assembly);
     }
 }

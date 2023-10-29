@@ -4,6 +4,7 @@ using InventoryX_Transactional.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryX_Transactional.Data.Migrations
 {
     [DbContext(typeof(InventoryXDbContext))]
-    partial class InventoryXDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231029202059_WarehouseAdded")]
+    partial class WarehouseAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
