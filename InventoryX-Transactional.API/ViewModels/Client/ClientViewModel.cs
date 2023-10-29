@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace InventoryX_Transactional.API.ViewModels;
+namespace InventoryX_Transactional.API.ViewModels.Client;
 
 public class ClientViewModel
 {

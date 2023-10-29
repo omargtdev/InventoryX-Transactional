@@ -17,8 +17,7 @@ public class CategoryEntityTypeConfiguration : IEntityTypeConfiguration<Category
             .IsRequired();
 
         builder.Property(c => c.Description)
-            .HasMaxLength(300)
-            .IsRequired();
+            .HasMaxLength(300);
 
         builder.Property(c => c.IsDeleted)
             .HasDefaultValue(false)

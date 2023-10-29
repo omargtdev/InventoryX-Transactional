@@ -1,6 +1,6 @@
-﻿using System.Web;
-using AutoMapper;
+﻿using AutoMapper;
 using InventoryX_Transactional.API.ViewModels;
+using InventoryX_Transactional.API.ViewModels.Client;
 using InventoryX_Transactional.Services;
 using InventoryX_Transactional.Services.DTOs.Client;
 using InventoryX_Transactional.Services.Exceptions;

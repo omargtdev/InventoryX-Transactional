@@ -4,6 +4,7 @@ using InventoryX_Transactional.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryX_Transactional.Data.Migrations
 {
     [DbContext(typeof(InventoryXDbContext))]
-    partial class InventoryXDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231029055017_AllowNullCategoryDescription")]
+    partial class AllowNullCategoryDescription
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,6 +45,7 @@ namespace InventoryX_Transactional.Data.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Description")
+                        .IsRequired()
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
@@ -81,7 +85,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 29, 0, 51, 54, 787, DateTimeKind.Local).AddTicks(3869));
+                        .HasDefaultValue(new DateTime(2023, 10, 29, 0, 50, 16, 920, DateTimeKind.Local).AddTicks(492));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -166,7 +170,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 29, 0, 51, 54, 787, DateTimeKind.Local).AddTicks(4714));
+                        .HasDefaultValue(new DateTime(2023, 10, 29, 0, 50, 16, 920, DateTimeKind.Local).AddTicks(1276));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()

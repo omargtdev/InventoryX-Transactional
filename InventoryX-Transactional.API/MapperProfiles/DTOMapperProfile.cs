@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryX_Transactional.Data.Models;
+using InventoryX_Transactional.Services.DTOs.Category;
 using InventoryX_Transactional.Services.DTOs.Client;
 using InventoryX_Transactional.Services.DTOs.Provider;
 using Microsoft.OpenApi.Extensions;
@@ -21,6 +22,11 @@ public class DTOMapperProfile : Profile
         CreateMap<NewProviderDTO, Provider>()
             .ForMember(dest => dest.ProviderId, opt => opt.MapFrom(src => Guid.NewGuid()));
         CreateMap<UpdateProviderDTO, Provider>()
+            .ForMember(dest => dest.ModifiedAt, opt => opt.MapFrom(src => DateTime.Now));
+
+        CreateMap<Category, CategoryDTO>();
+        CreateMap<NewCategoryDTO, Category>();
+        CreateMap<UpdateCategoryDTO, Category>()
             .ForMember(dest => dest.ModifiedAt, opt => opt.MapFrom(src => DateTime.Now));
     }
 }

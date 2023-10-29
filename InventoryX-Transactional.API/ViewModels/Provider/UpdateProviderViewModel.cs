@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InventoryX_Transactional.API.ViewModels;
+namespace InventoryX_Transactional.API.ViewModels.Provider;
 
-public class NewProviderViewModel
+public class UpdateProviderViewModel
 {
+    public Guid Id { get; set; }
+
     [Required(ErrorMessage = "The Business Name field is required.")]
     [MinLength(3, ErrorMessage = "Business Name must be at least 3 characters long")]
     public string BusinessName { get; set; } = null!;
@@ -23,5 +25,4 @@ public class NewProviderViewModel
     [Required(ErrorMessage = "The Address field is required.")]
     [MinLength(3, ErrorMessage = "Adress must be at least 3 characters long")]
     public string Address { get; set; } = null!;
-
 }

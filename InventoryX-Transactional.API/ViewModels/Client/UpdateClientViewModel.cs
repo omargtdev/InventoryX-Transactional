@@ -1,9 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace InventoryX_Transactional.API.ViewModels;
+namespace InventoryX_Transactional.API.ViewModels.Client;
 
-public class NewClientViewModel
+public class UpdateClientViewModel
 {
+
+    public Guid Id { get; set; }
+
     [Required(ErrorMessage = "Name is required")]
     [MinLength(3, ErrorMessage = "Name must be at least 3 characters long")]
     public string Name { get; set; }
@@ -28,11 +31,5 @@ public class NewClientViewModel
 
     [Required(ErrorMessage = "IsLegal is required")]
     public bool? IsLegal { get; set; }
-}
 
-public enum DocumentTypeViewModel 
-{
-    DNI = 1,
-    RUC = 2,
-    ImmigrationCard = 3
 }

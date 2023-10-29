@@ -25,4 +25,9 @@
     <ProjectReference Include="..\InventoryX-Transactional.Services\InventoryX-Transactional.Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Client\" />
+    <Folder Include="ViewModels\Provider\" />
+  </ItemGroup>
+
 </Project>

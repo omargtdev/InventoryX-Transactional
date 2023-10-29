@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using InventoryX_Transactional.API.ViewModels;
+using InventoryX_Transactional.API.ViewModels.Provider;
 using InventoryX_Transactional.Services;
 using InventoryX_Transactional.Services.DTOs.Provider;
 using InventoryX_Transactional.Services.Exceptions;

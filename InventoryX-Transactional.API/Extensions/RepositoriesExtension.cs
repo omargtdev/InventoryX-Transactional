@@ -15,6 +15,7 @@ public static class RepositoriesExtension
 
         services.AddScoped<IClientRepository, ClientRepository>();
         services.AddScoped<IProviderRepository, ProviderRepository>();
+        services.AddScoped<ICategoryRepository, CategoryRepository>();
 
         return services;
     }

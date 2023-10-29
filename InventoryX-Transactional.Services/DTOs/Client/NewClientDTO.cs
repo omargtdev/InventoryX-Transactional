@@ -9,7 +9,7 @@ public class NewClientDTO
     public string Phone { get; set; } = null!;
     public string? Address { get; set; }
     public bool IsLegal { get; set; }
-    public string ActionBy{ get; set; }
+    public string ActionBy { get; set; }
 }
 
 public enum DocumentTypeClient
