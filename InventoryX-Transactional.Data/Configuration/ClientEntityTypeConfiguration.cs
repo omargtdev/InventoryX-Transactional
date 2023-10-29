@@ -50,6 +50,5 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Client>
             .IsRequired();
 
         builder.ToTable(nameof(Client));
-        builder.HasData(ClientSeed.Data);
     }
 }

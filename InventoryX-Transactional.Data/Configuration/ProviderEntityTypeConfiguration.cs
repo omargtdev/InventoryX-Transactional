@@ -45,6 +45,5 @@ public class ProviderEntityTypeConfiguration : IEntityTypeConfiguration<Provider
             .IsRequired();
 
         builder.ToTable(nameof(Provider));
-        builder.HasData(ProviderSeed.Data);
     }
 }
