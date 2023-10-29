@@ -1,6 +1,5 @@
 ﻿using InventoryX_Transactional.Data.Configuration;
 using InventoryX_Transactional.Data.Models;
-using InventoryX_Transactional.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 
 namespace InventoryX_Transactional.Data;

@@ -1,5 +1,4 @@
 ﻿using InventoryX_Transactional.Data.Models;
-using InventoryX_Transactional.Data.Seeds;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
