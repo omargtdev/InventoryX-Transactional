@@ -6,7 +6,7 @@ public class ReceiptProduct
     public int ProductId { get; set; }
     public decimal UnitSalesPrice { get; set; }
     public int Quantity { get; set; }
-    public Guid CreatedBy { get; set; }
+    public string CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
 
 
