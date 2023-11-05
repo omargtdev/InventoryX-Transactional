@@ -2,8 +2,7 @@
 
 public class ReceiptProduct
 {
-    public Guid IssueId { get; set; }
-    public int WarehouseId { get; set; }
+    public Guid ReceiptId { get; set; }
     public int ProductId { get; set; }
     public decimal UnitSalesPrice { get; set; }
     public int Quantity { get; set; }
@@ -12,6 +11,5 @@ public class ReceiptProduct
 
 
     public Receipt Receipt { get; set; }
-    public Warehouse Warehouse { get; set; }
     public Product Product { get; set; }
 }

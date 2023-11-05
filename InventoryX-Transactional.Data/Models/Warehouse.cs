@@ -12,11 +12,5 @@ public class Warehouse : BaseEntity
     public string District { get; set; }
     public string Province { get; set; }
     public string City { get; set; }
-
-    // public List<Product> Products { get; } = new();
-    // public List<WarehouseProduct> WarehouseProducts { get; } = new();
-    // public List<Issue> Issues { get; } = new();
-    // public List<IssueProduct> IssueProducts { get; } = new();
-    // public List<Receipt> Receipts { get; } = new();
-    // public List<ReceiptProduct> ReceiptProducts { get; } = new();
+    public List<Product> Products { get; } = new();
 }

@@ -12,5 +12,5 @@ public class Provider : BaseEntity
     public string Address { get; set; }
 
 
-    // public List<Receipt> Receipts { get; set; } = new();
+    public List<Receipt> Receipts { get; set; } = new();
 }
