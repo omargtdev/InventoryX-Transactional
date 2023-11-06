@@ -1,4 +1,5 @@
 ﻿using System.Linq.Expressions;
+using System.Security.Cryptography.X509Certificates;
 using InventoryX_Transactional.Data;
 using InventoryX_Transactional.Data.Models.Common;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +15,15 @@ public class GenericRepository<T> : IGenericRepository<T> where T : BaseEntity
         _context = context; 
     }
 
-    public async Task<T?> GetByIdAsync(object id)
+    public async Task<T?> GetByIdAsync(object id, bool detach = true)
     {
         var entity = await _context.Set<T>().FindAsync(id);
         if(entity == null || entity.IsDeleted)
             return null;
 
-        _context.Entry(entity).State = EntityState.Detached;
+        if(detach)
+            _context.Entry(entity).State = EntityState.Detached;
+
         return entity;
     }
 

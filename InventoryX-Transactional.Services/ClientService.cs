@@ -105,19 +105,19 @@ public class ClientService : IClientService
         {
             case DocumentTypeClient.DNI:
                 if(documentNumber.Length != 8)
-                    throw new InvalidDocumentNumberLengthException(
+                    throw new InvalidDocumentNumberException(
                         $"The {DocumentTypeClient.DNI} needs a length of 8."
                     );
                 return;
             case DocumentTypeClient.RUC: 
                 if(documentNumber.Length != 11)
-                    throw new InvalidDocumentNumberLengthException(
+                    throw new InvalidDocumentNumberException(
                         $"The {DocumentTypeClient.RUC} needs a length of 11."
                     );
                 return;
             case DocumentTypeClient.ImmigrationCard: 
                 if(documentNumber.Length != 15)
-                    throw new InvalidDocumentNumberLengthException(
+                    throw new InvalidDocumentNumberException(
                         $"The {DocumentTypeClient.ImmigrationCard} needs a length of 15."
                     );
                 return;

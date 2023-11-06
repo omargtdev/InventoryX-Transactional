@@ -1,5 +1,6 @@
 ﻿using InventoryX_Transactional.API.MapperProfiles;
 using InventoryX_Transactional.Services;
+using InventoryX_Transactional.Services.Validations;
 
 namespace InventoryX_Transactional.API.Extensions;
 
@@ -9,10 +10,15 @@ public static class ServicesExtension
     {
         services.AddAutoMapper(typeof(DTOMapperProfile), typeof(ViewModelMapperProfile));
 
+        services.AddScoped<ProductValidationService>();
+        services.AddScoped<ProviderValidationService>();
+        services.AddScoped<ReceiptValidationService>();
+
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IProviderService, ProviderService>();
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IWarehouseService, WarehouseService>();
+        services.AddScoped<IReceiptService, ReceiptService>();
 
         return services;
     }

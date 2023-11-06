@@ -73,7 +73,7 @@ public class ClientController : ControllerBase
             return ex switch
             {
                 InvalidDocumentTypeForLegalClientException or 
-                InvalidDocumentNumberLengthException or 
+                InvalidDocumentNumberException or 
                 EmailAlreadyExistForClientException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
                 _ => StatusCode(
                     StatusCodes.Status500InternalServerError,
@@ -108,7 +108,7 @@ public class ClientController : ControllerBase
             {
                 ResourceNotFoundException or
                 InvalidDocumentTypeForLegalClientException or 
-                InvalidDocumentNumberLengthException or 
+                InvalidDocumentNumberException or 
                 EmailAlreadyExistForClientException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
                 _ => StatusCode(
                     StatusCodes.Status500InternalServerError,

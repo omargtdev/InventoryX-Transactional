@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryX-Transactional.Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryX-Transactional.Services", "InventoryX-Transactional.Services\InventoryX-Transactional.Services.csproj", "{0F4CA5B2-FBA2-4F74-A41E-B1185CC0F9AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InventoryX-Transactional.Extensions", "InventoryX-Transactional.Extensions\InventoryX-Transactional.Extensions.csproj", "{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}"
+EndProject
 Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -72,5 +74,17 @@ Global
 		{0F4CA5B2-FBA2-4F74-A41E-B1185CC0F9AA}.Release|x64.Build.0 = Release|Any CPU
 		{0F4CA5B2-FBA2-4F74-A41E-B1185CC0F9AA}.Release|x86.ActiveCfg = Release|Any CPU
 		{0F4CA5B2-FBA2-4F74-A41E-B1185CC0F9AA}.Release|x86.Build.0 = Release|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Debug|x64.Build.0 = Debug|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Debug|x86.Build.0 = Debug|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Release|x64.ActiveCfg = Release|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Release|x64.Build.0 = Release|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Release|x86.ActiveCfg = Release|Any CPU
+		{5A7AF5C7-B4B3-4C48-879F-AF6E58F8FE61}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
