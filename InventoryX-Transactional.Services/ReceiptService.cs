@@ -51,7 +51,7 @@ public class ReceiptService : IReceiptService
             Notes = receipt.Notes,
             Provider = provider,
             CreatedAt = DateTime.Now,
-            CreatedBy = "omar"
+            CreatedBy = "System"
         };
         receiptToRegister.ReceiptProducts.AddRange(products);
         await _unitOfWork.Receipts.AddReceiptAsync(receiptToRegister);
@@ -64,7 +64,7 @@ public class ReceiptService : IReceiptService
         
         var providerToCreate = _mapper.Map<Provider>(newProviderValidated);
         providerToCreate.CreatedAt = DateTime.Now;
-        providerToCreate.CreatedBy = "omar";
+        providerToCreate.CreatedBy = "System";
         var providerCreated = await _unitOfWork.Providers
             .AddAsync(providerToCreate);
 
@@ -75,7 +75,7 @@ public class ReceiptService : IReceiptService
             Notes = receipt.Notes,
             Provider = providerCreated,
             CreatedAt = DateTime.Now,
-            CreatedBy = "omar"
+            CreatedBy = "System"
         };
         receiptToRegister.ReceiptProducts.AddRange(products);
         await _unitOfWork.Receipts.AddReceiptAsync(receiptToRegister);
@@ -98,13 +98,13 @@ public class ReceiptService : IReceiptService
                 var productValidatedForCreate = await _productValidationService.ValidateForCreate(_mapper.Map<NewProductDTO>(product));
 
                 var productMapped = _mapper.Map<Product>(productValidatedForCreate);
-                productMapped.CreatedBy = "omar";
+                productMapped.CreatedBy = "System";
                 productMapped.CreatedAt = DateTime.Now;
                 productMapped.ProductPrice = new ProductPrice 
                 {
                     LastReceiptPrice = product.UnitPrice,
                     CreatedAt = DateTime.Now,
-                    CreatedBy = "omar"
+                    CreatedBy = "System"
                 };
 
                 productByCode = await _unitOfWork.Products.AddAsync(productMapped);
@@ -117,7 +117,7 @@ public class ReceiptService : IReceiptService
                 UnitSalesPrice = product.UnitPrice,
                 Quantity = product.Count,
                 CreatedAt = DateTime.Now,
-                CreatedBy = "omar"
+                CreatedBy = "System"
             };
             productsForReceipt.Add(productForReceipt);
         }
