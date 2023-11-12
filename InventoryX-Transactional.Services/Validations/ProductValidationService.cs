@@ -2,7 +2,7 @@
 using InventoryX_Transactional.Data.Models;
 using InventoryX_Transactional.Extensions;
 using InventoryX_Transactional.Repository.Common;
-using InventoryX_Transactional.Services.DTOs.Product;
+using InventoryX_Transactional.Services.DTOs.Receipt;
 using InventoryX_Transactional.Services.Exceptions;
 
 namespace InventoryX_Transactional.Services.Validations;

@@ -1,6 +1,6 @@
 ﻿namespace InventoryX_Transactional.Services.DTOs.Product;
 
-public record NewProductDTO(
+public record UpdateProductDTO(
     string Code,
     string Name,
     string Description,
