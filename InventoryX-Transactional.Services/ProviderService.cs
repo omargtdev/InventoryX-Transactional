@@ -76,7 +76,7 @@ public class ProviderService : IProviderService
     private async Task ValidateRUC(NewProviderDTO provider)
     {
         if(provider.RUC.Length != 11)
-            throw new InvalidDocumentNumberLengthException("The RUC needs to be 11 characters");
+            throw new InvalidDocumentNumberException("The RUC needs to be 11 characters");
 
         var providerFound = (await _providerRepository.GetByConditionAsync(p => p.RUC == provider.RUC)).FirstOrDefault();
             
@@ -87,7 +87,7 @@ public class ProviderService : IProviderService
     private async Task ValidateRUC(UpdateProviderDTO provider)
     {
         if(provider.RUC.Length != 11)
-            throw new InvalidDocumentNumberLengthException("The RUC needs to be 11 characters");
+            throw new InvalidDocumentNumberException("The RUC needs to be 11 characters");
 
         var providerFound = (await _providerRepository.GetByConditionAsync(p => p.RUC == provider.RUC && p.ProviderId != provider.ProviderId)).FirstOrDefault();
 

@@ -8,4 +8,8 @@ public interface IUnitOfWork : ISaveRepository, IDisposable
     // Repositories
     IGenericRepository<Client> Clients { get; }
     IGenericRepository<Provider> Providers { get; }
+    IGenericRepository<Category> Categories { get; }
+    IGenericRepository<Warehouse> Warehouses { get; }
+    IGenericRepository<Product> Products { get; }
+    IReceiptRepository Receipts { get; }
 }

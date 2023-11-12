@@ -11,15 +11,27 @@ public class UnitOfWork : IUnitOfWork
     public UnitOfWork(
         InventoryXDbContext context,
         IGenericRepository<Client> clientRepository,
-        IGenericRepository<Provider> providerRepository)
+        IGenericRepository<Provider> providerRepository,
+        IGenericRepository<Category> categoryRepository,
+        IGenericRepository<Warehouse> warehouseRepository,
+        IGenericRepository<Product> productRepository,
+        IReceiptRepository receiptRepository) 
     {
         _context = context;
         Clients = clientRepository;
         Providers = providerRepository;
+        Categories = categoryRepository;
+        Warehouses = warehouseRepository;
+        Products = productRepository;
+        Receipts = receiptRepository;
     }
 
     public IGenericRepository<Client> Clients { get; }
     public IGenericRepository<Provider> Providers { get; }
+    public IGenericRepository<Category> Categories { get; }
+    public IGenericRepository<Warehouse> Warehouses { get; }
+    public IGenericRepository<Product> Products { get; }
+    public IReceiptRepository Receipts { get; }
     public async Task SaveAsync() => await _context.SaveChangesAsync();
 
     public void Dispose()

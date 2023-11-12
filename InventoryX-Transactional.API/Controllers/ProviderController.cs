@@ -69,7 +69,7 @@ public class ProviderController : ControllerBase
         {
             return ex switch
             {
-                InvalidDocumentNumberLengthException or 
+                InvalidDocumentNumberException or 
                 RUCAlreadyExistsForProviderException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
                 _ => StatusCode(
                     StatusCodes.Status500InternalServerError,
@@ -104,7 +104,7 @@ public class ProviderController : ControllerBase
             {
                 ResourceNotFoundException or
                 RUCAlreadyExistsForProviderException or 
-                InvalidDocumentNumberLengthException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
+                InvalidDocumentNumberException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
                 _ => StatusCode(
                     StatusCodes.Status500InternalServerError,
                     new ResponseErrorViewModel

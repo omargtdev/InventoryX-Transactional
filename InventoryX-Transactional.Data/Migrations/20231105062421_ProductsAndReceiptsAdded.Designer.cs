@@ -4,6 +4,7 @@ using InventoryX_Transactional.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryX_Transactional.Data.Migrations
 {
     [DbContext(typeof(InventoryXDbContext))]
-    partial class InventoryXDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231105062421_ProductsAndReceiptsAdded")]
+    partial class ProductsAndReceiptsAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,7 +84,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(3298));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(1782));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -159,7 +162,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(4495));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(3033));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -217,7 +220,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(4834));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(3360));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -273,7 +276,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(3570));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(2075));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
@@ -313,11 +316,10 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(5012));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(3536));
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
@@ -346,11 +348,10 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(5414));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(3938));
 
-                    b.Property<string>("CreatedBy")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
@@ -386,7 +387,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 11, 5, 15, 39, 12, 584, DateTimeKind.Local).AddTicks(3909));
+                        .HasDefaultValue(new DateTime(2023, 11, 5, 1, 24, 21, 885, DateTimeKind.Local).AddTicks(2401));
 
                     b.Property<string>("CreatedBy")
                         .IsRequired()
