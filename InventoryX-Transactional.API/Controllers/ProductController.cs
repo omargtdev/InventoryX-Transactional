@@ -1,42 +1,41 @@
 ﻿using AutoMapper;
 using InventoryX_Transactional.API.ViewModels;
-using InventoryX_Transactional.Services;
 using InventoryX_Transactional.Services.DTOs.Category;
 using InventoryX_Transactional.Services.Exceptions;
-using InventoryX_Transactional.Services.Exceptions.Category;
+using InventoryX_Transactional.Services;
 using Microsoft.AspNetCore.Mvc;
+using InventoryX_Transactional.Services.DTOs.Product;
 
-namespace InventoryX_Transactional.API;
+namespace InventoryX_Transactional.API.Controllers;
 
 [ApiController]
-[Route("categories")]
-public class CategoryController : ControllerBase
+[Route("products")]
+public class ProductController : ControllerBase
 {
-    private readonly ICategoryService _categoryService;
+    private readonly IProductService _productService;
     private readonly IMapper _mapper;
 
-    public CategoryController(ICategoryService categoryService, IMapper mapper)
+    public ProductController(IProductService productService, IMapper mapper)
     {
-        _categoryService = categoryService;
+        _productService = productService;
         _mapper = mapper;
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<CategoryViewModel>>> GetCategories()
+    public async Task<ActionResult<List<CategoryDTO>>> GetProducts()
     {
-        var categories = await _categoryService.GetCategories();
-        return Ok(categories.Select(c => _mapper.Map<CategoryViewModel>(c)));
+        var categories = await _productService.GetProducts();
+        return Ok(categories);
     }
 
     [HttpGet]
-    [Route("{categoryId}")]
-    public async Task<ActionResult<CategoryViewModel>> GetCategoryById(int categoryId)
+    [Route("{productId}")]
+    public async Task<ActionResult<CategoryViewModel>> GetProductById(int productId)
     {
         try
         {
-            var category = await _categoryService.GetCategoryById(categoryId);
-            
-            return Ok(_mapper.Map<CategoryViewModel>(category));
+            var product = await _productService.GetProductById(productId);
+            return Ok(product);
         }
         catch (Exception ex)
         {
@@ -56,21 +55,20 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateCategory([FromBody] NewCategoryViewModel newCategory)
+    public async Task<IActionResult> CreateProduct([FromBody] NewProductDTO newProduct)
     {
         try
         {
-            if(!ModelState.IsValid)    
-                return BadRequest(ModelState.Values.SelectMany(v => v.Errors));
-            
-            var category = await _categoryService.CreateCategory(_mapper.Map<NewCategoryDTO>(newCategory));
-            return CreatedAtAction(null, category);
+            var product = await _productService.CreateProduct(newProduct);
+            return CreatedAtAction(null, product);
         }
         catch (Exception ex)
         {
             return ex switch
             {
-                CategoryNameAlreadyExistsException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
+                EntityRuleException or
+                DuplicateEntityException or
+                ResourceNotFoundException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
                 _ => StatusCode(
                     StatusCodes.Status500InternalServerError,
                     new ResponseErrorViewModel
@@ -84,26 +82,22 @@ public class CategoryController : ControllerBase
     }
 
     [HttpPut]
-    [Route("{categoryId}")]
-    public async Task<IActionResult> UpdateCategory(int categoryId, [FromBody] UpdateCategoryViewModel categoryToUpdate)
+    [Route("{productId}")]
+    public async Task<IActionResult> UpdateProduct(int productId, [FromBody] UpdateProductDTO productToUpdate)
     {
         try
         {
-            if(!ModelState.IsValid)    
-                return BadRequest(ModelState.Values.SelectMany(v => v.Errors));
-            
-            var categoryMapped =_mapper.Map<UpdateCategoryDTO>(categoryToUpdate); 
-            categoryMapped.CategoryId = categoryId;
-            var category = await _categoryService.UpdateCategory(categoryMapped);
-            
-            return Ok(category);
+            productToUpdate.Id = productId;
+            var product = await _productService.UpdateProduct(productToUpdate);
+            return Ok(product);
         }
         catch (Exception ex)
         {
             return ex switch
             {
-                ResourceNotFoundException or
-                CategoryNameAlreadyExistsException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
+                EntityRuleException or
+                DuplicateEntityException or
+                ResourceNotFoundException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
                 _ => StatusCode(
                     StatusCodes.Status500InternalServerError,
                     new ResponseErrorViewModel
@@ -117,12 +111,12 @@ public class CategoryController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("{categoryId}")]
-    public async Task<IActionResult> DeleteCategory(int categoryId)
+    [Route("{productId}")]
+    public async Task<IActionResult> DeleteProduct(int productId)
     {
         try
         {
-            await _categoryService.DeleteCategory(categoryId);
+            await _productService.DeleteProduct(productId);
             return NoContent();
         }
         catch (Exception ex)

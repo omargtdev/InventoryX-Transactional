@@ -19,6 +19,8 @@ public static class ServicesExtension
         services.AddScoped<ICategoryService, CategoryService>();
         services.AddScoped<IWarehouseService, WarehouseService>();
         services.AddScoped<IReceiptService, ReceiptService>();
+        services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<IReceiptService, ReceiptService>();
 
         return services;
     }
