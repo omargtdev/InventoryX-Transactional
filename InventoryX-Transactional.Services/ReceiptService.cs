@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using InventoryX_Transactional.Data.Models;
 using InventoryX_Transactional.Repository.UnitOfWork;
+using InventoryX_Transactional.Services.DTOs.Product;
 using InventoryX_Transactional.Services.DTOs.Provider;
 using InventoryX_Transactional.Services.DTOs.Receipt;
 using InventoryX_Transactional.Services.Validations;

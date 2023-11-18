@@ -22,7 +22,7 @@ public static class RepositoriesExtension
         services.AddScoped<IProviderRepository, ProviderRepository>();
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         services.AddScoped<IWarehouseRepository, WarehouseRepository>();
-        services.AddScoped<IReceiptService, ReceiptService>();
+        services.AddScoped<IProductRepository, ProductRepository>();
 
         return services;
     }

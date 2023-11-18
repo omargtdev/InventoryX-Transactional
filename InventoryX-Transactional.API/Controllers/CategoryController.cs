@@ -30,7 +30,7 @@ public class CategoryController : ControllerBase
 
     [HttpGet]
     [Route("{categoryId}")]
-    public async Task<ActionResult<CategoryViewModel>> GetClientById(int categoryId)
+    public async Task<ActionResult<CategoryViewModel>> GetCategoryById(int categoryId)
     {
         try
         {

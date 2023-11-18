@@ -1,23 +1,27 @@
 ﻿namespace InventoryX_Transactional.Services.DTOs.Product;
 
-public record ProductDTO(
-    int Id,
-    string Code,
-    string Name,
-    string Description,
-    string Brand,
-    bool IsActive,
-    ProductCategoryDTO Category,
-    ProductWarehouseDTO Warehouse
-    );
+public class ProductDTO
+{
+    public int Id { get; set; }
+    public string Code { get; set; } = string.Empty;
+    public string Name { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
+    public string Brand { get; set; } = string.Empty;
+    public ProductCategoryDTO Category { get; set; } = new ProductCategoryDTO();
+    public ProductWarehouseDTO Warehouse { get; set; } = new ProductWarehouseDTO();
+
+}
 
 
-public record ProductCategoryDTO(
-    int Id,
-    string Name
-    );
+public class ProductCategoryDTO
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
 
-public record ProductWarehouseDTO(
-    int Id,
-    string Name
-    );
+}
+
+public class ProductWarehouseDTO
+{
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+}

@@ -6,4 +6,7 @@ public record UpdateProductDTO(
     string Description,
     string Brand,
     int CategoryId,
-    int WarehouseId);
+    int WarehouseId)
+{
+    public int Id { get; set; }
+}
