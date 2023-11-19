@@ -2,12 +2,8 @@
 
 public class ReceiptProductDTO
 {
-    public string Code { get; set; } = null!;
-    public string? Name { get; set; }
-    public string? Description { get; set; }
-    public string? Brand { get; set; }
-    public int CategoryId { get; set; }
-    public int WarehouseId { get; set; }
+    public string Code { get; set; } = string.Empty;
     public int Count { get; set; }
-    public decimal UnitPrice { get; set; }
+    public decimal UnitPurchasePrice { get; set; }
+    public decimal UnitSalesPrice { get; set; }
 }

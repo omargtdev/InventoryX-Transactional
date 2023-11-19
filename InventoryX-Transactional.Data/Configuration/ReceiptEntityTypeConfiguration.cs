@@ -13,6 +13,9 @@ public class ReceiptEntityTypeConfiguration : IEntityTypeConfiguration<Receipt>
         builder.Property(r => r.RegistrationDate)
             .IsRequired();
 
+        builder.Property(r => r.ReferralGuideFileName)
+           .IsRequired();
+
         builder.Property(r => r.CreatedBy)
             .IsRequired();
 

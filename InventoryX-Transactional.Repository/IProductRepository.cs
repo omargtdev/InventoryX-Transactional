@@ -7,4 +7,7 @@ public interface IProductRepository : IGenericRepository<Product>, ISaveReposito
 {
     Task<IEnumerable<Product>> GetAll();
     Task<Product?> GetByIdAsync(int id);
+    Task<Product?> GetByCodeAsync(string code);
+    Task<bool> ExistProductByCode(string code, int? id = null);
+    Task<int> GetStockSumByWarehouse(int warehouseId);
 }

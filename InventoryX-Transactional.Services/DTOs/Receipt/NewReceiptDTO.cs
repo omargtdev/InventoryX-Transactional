@@ -1,10 +1,9 @@
-﻿namespace InventoryX_Transactional.Services.DTOs.Receipt;
+﻿using Microsoft.AspNetCore.Http;
+
+namespace InventoryX_Transactional.Services.DTOs.Receipt;
 
 public class NewReceiptDTO
 {
-    public DateTime RegistrationDate { get; set; }
-    public string? Notes { get; set; }
-    public ReceiptProviderDTO Provider { get; set; } = new();
-    public List<ReceiptProductDTO> Products { get; set; } = new();
-    public string ActionBy { get; set; } = null!;
+    public string DataJsonContent { get; set; } = null!;
+    public IFormFile ReferralGuide { get; set; } = null!;
 }

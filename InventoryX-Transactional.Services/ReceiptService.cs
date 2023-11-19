@@ -1,130 +1,92 @@
 ﻿using AutoMapper;
 using InventoryX_Transactional.Data.Models;
+using InventoryX_Transactional.Repository;
 using InventoryX_Transactional.Repository.UnitOfWork;
-using InventoryX_Transactional.Services.DTOs.Product;
-using InventoryX_Transactional.Services.DTOs.Provider;
+using InventoryX_Transactional.Services.Azure;
 using InventoryX_Transactional.Services.DTOs.Receipt;
+using InventoryX_Transactional.Services.DTOs.Storage;
 using InventoryX_Transactional.Services.Validations;
+using Microsoft.AspNetCore.Http;
 
 namespace InventoryX_Transactional.Services;
 
 public class ReceiptService : IReceiptService
 {
     private readonly IUnitOfWork _unitOfWork;
-    private readonly ProviderValidationService _providerValidationService;
-    private readonly ProductValidationService _productValidationService;
-    private readonly ReceiptValidationService _receiptValidationService;
-    private readonly IMapper _mapper;
+    private readonly IProductRepository _productRepository;
+    private readonly ReceiptValidationService _validator;
+    private readonly IAzureFileService _azureFileService;
+
+    private const string BlobContainerName = "receipts";
 
     public ReceiptService(
         IUnitOfWork unitOfWork,
-        ProviderValidationService providerValidationService,
-        ProductValidationService productValidationService,
+        IProductRepository productRepository,
         ReceiptValidationService receiptValidationService,
+        IAzureFileService azureFileService,
         IMapper mapper)
     {
         _unitOfWork = unitOfWork;
-        _providerValidationService = providerValidationService;
-        _productValidationService = productValidationService;
-        _receiptValidationService = receiptValidationService;
+        _productRepository = productRepository;
+        _validator = receiptValidationService;
+        _azureFileService = azureFileService;
         _mapper = mapper;
     }
 
-    // TODO: Return information about the count of products
-    public async Task CreateReceipt(NewReceiptDTO receipt)
+    public async Task<ReceiptCreatedDTO> CreateReceipt(NewReceiptDTO newReceipt)
     {
-        var providerByRuc = (await _unitOfWork.Providers.GetByConditionAsync(p => p.RUC == receipt.Provider.RUC)).FirstOrDefault();
-        if(providerByRuc is not null)
-            await CreateReceiptWithExistingProvider(receipt, providerByRuc);
-        else
-            await CreateReceiptWithNewProvider(receipt);
-        
-        await _unitOfWork.SaveAsync();
-    }
-
-    private async Task CreateReceiptWithExistingProvider(NewReceiptDTO receipt, Provider provider)
-    {
-        var products = await GetProducts(receipt.Products);
-        var receiptToRegister = new Receipt 
+        var receiptValidated = await _validator.ValidReceiptForCreate(newReceipt);
+        var receiptEntity = new Receipt
         {
-            RegistrationDate = receipt.RegistrationDate,
-            Notes = receipt.Notes,
-            Provider = provider,
-            CreatedAt = DateTime.Now,
-            CreatedBy = "System"
+            ReceiptId = Guid.NewGuid(),
+            RegistrationDate = receiptValidated.Content.RegistrationDate,
+            Notes = receiptValidated.Content.Notes,
+            ProviderId = receiptValidated.Content.ProviderId,
+            CreatedBy = "System",
+            CreatedAt = DateTime.UtcNow
         };
-        receiptToRegister.ReceiptProducts.AddRange(products);
-        await _unitOfWork.Receipts.AddReceiptAsync(receiptToRegister);
-    }
 
-    private async Task CreateReceiptWithNewProvider(NewReceiptDTO receipt)
-    {
-        var newProviderValidated = await _providerValidationService
-            .ValidateForCreate(_mapper.Map<NewProviderDTO>(receipt.Provider));
-        
-        var providerToCreate = _mapper.Map<Provider>(newProviderValidated);
-        providerToCreate.CreatedAt = DateTime.Now;
-        providerToCreate.CreatedBy = "System";
-        var providerCreated = await _unitOfWork.Providers
-            .AddAsync(providerToCreate);
-
-        var products = await GetProducts(receipt.Products);
-        var receiptToRegister = new Receipt 
+        foreach(var product in receiptValidated.Content.Products)
         {
-            RegistrationDate = receipt.RegistrationDate,
-            Notes = receipt.Notes,
-            Provider = providerCreated,
-            CreatedAt = DateTime.Now,
-            CreatedBy = "System"
-        };
-        receiptToRegister.ReceiptProducts.AddRange(products);
-        await _unitOfWork.Receipts.AddReceiptAsync(receiptToRegister);
-    }
+            var productValidated = await _validator.ValidateReceiptProductForCreate(product);
+            var productEntity = await _productRepository.GetByCodeAsync(productValidated.Code);
 
-    private async Task<List<ReceiptProduct>> GetProducts(List<ReceiptProductDTO> products)
-    {
-        if(!products.Any())
-            throw new EntityRuleException("The count of products in a receipt cannot be 0.");
+            var currentWarehouseStock = await _productRepository.GetStockSumByWarehouse(productEntity!.WarehouseId);
+            var warehouseStockResult = currentWarehouseStock + productValidated.Count;
+            if (warehouseStockResult > productEntity.Warehouse.MaxStock)
+                throw new EntityRuleException(
+                    $"The warehouse '{productEntity.Warehouse.Name}' from the product with code " +
+                    $"'{productEntity.Code}' would exceed the current stock. Actual stock: " +
+                    $"{currentWarehouseStock}");
 
-        var productsForReceipt = new List<ReceiptProduct>();
-        foreach(var product in products)
-        {
-            _receiptValidationService.ValidateReceiptProductForCreate(product);
+            productEntity!.ProductPrice.LastReceiptPrice = productValidated.UnitPurchasePrice;
+            productEntity!.ProductPrice.LastIssuePrice = productValidated.UnitSalesPrice;
+            productEntity!.Stock += productValidated.Count;
+            productEntity!.ModifiedAt = DateTime.UtcNow;
+            productEntity!.ModifiedBy = "System";
 
-            var productByCode = (await _unitOfWork.Products.GetByConditionAsync(p => p.Code == product.Code)).FirstOrDefault();
-            if(productByCode is null)
+            var receiptProduct = new ReceiptProduct
             {
-                // Creating products if does not exist
-                var productValidatedForCreate = await _productValidationService.ValidateForCreate(_mapper.Map<NewProductDTO>(product));
-
-                var productMapped = _mapper.Map<Product>(productValidatedForCreate);
-                productMapped.CreatedBy = "System";
-                productMapped.CreatedAt = DateTime.Now;
-                productMapped.ProductPrice = new ProductPrice 
-                {
-                    LastReceiptPrice = product.UnitPrice,
-                    CreatedAt = DateTime.Now,
-                    CreatedBy = "System"
-                };
-
-                productByCode = await _unitOfWork.Products.AddAsync(productMapped);
-            }
-            
-            // Creating receipt product
-            var productForReceipt = new ReceiptProduct
-            {
-                Product = productByCode,
-                UnitSalesPrice = product.UnitPrice,
-                Quantity = product.Count,
-                CreatedAt = DateTime.Now,
-                CreatedBy = "System"
+                ReceiptId = receiptEntity.ReceiptId,
+                ProductId = productEntity.ProductId,
+                UnitPurchasePrice = productValidated.UnitPurchasePrice,
+                UnitSalesPrice = productValidated.UnitSalesPrice,
+                Quantity = productValidated.Count,
+                CreatedBy = "System",
+                CreatedAt = DateTime.UtcNow
             };
-            productsForReceipt.Add(productForReceipt);
+
+            receiptEntity.ReceiptProducts.Add(receiptProduct);
         }
 
-        return productsForReceipt;
-    }
+        var fileCreated = await _azureFileService.UploadFileAsync(BlobContainerName, receiptValidated.ReferralGuide);
+        receiptEntity.ReferralGuideFileName = fileCreated.FileName;
 
+        await _unitOfWork.Receipts.AddReceiptAsync(receiptEntity);
+        await _unitOfWork.SaveAsync();
+
+        return new ReceiptCreatedDTO(receiptEntity.ReceiptId);
+    }
     public Task<ReceiptDTO> GetById(Guid id)
     {
         throw new NotImplementedException();
@@ -133,5 +95,10 @@ public class ReceiptService : IReceiptService
     public Task<List<ReceiptDTO>> GetReceipts()
     {
         throw new NotImplementedException();
+    }
+
+    public async Task<BlobFileDTO> UploadReferralGuide(IFormFile file)
+    {
+        return await _azureFileService.UploadFileAsync(BlobContainerName, file);
     }
 }

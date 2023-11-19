@@ -18,13 +18,13 @@ public class InventoryXDbContext : DbContext
    
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ClientEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProviderEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(CategoryEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(WarehouseEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductPriceEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReceiptEntityTypeConfiguration).Assembly);
-        modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReceiptProductEntityTypeConfiguration).Assembly);
+        modelBuilder.ApplyConfigurationsFromAssembly(typeof(InventoryXDbContext).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProviderEntityTypeConfiguration).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(CategoryEntityTypeConfiguration).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(WarehouseEntityTypeConfiguration).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductEntityTypeConfiguration).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductPriceEntityTypeConfiguration).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReceiptEntityTypeConfiguration).Assembly);
+        //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReceiptProductEntityTypeConfiguration).Assembly);
     }
     }

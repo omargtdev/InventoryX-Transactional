@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using InventoryX_Transactional.API.ViewModels;
 using InventoryX_Transactional.API.ViewModels.Receipt;
 using InventoryX_Transactional.Services;
 using InventoryX_Transactional.Services.DTOs.Receipt;
+using InventoryX_Transactional.Services.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InventoryX_Transactional.API.Controllers;
@@ -34,10 +36,50 @@ public class ReceiptController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateReceipt([FromBody] NewReceiptViewModel receipt)
+    public async Task<IActionResult> CreateReceipt([FromForm] NewReceiptDTO receipt)
     {
-        await _receiptService.CreateReceipt(_mapper.Map<NewReceiptDTO>(receipt)); 
-        return Ok(receipt);
+        try
+        {
+            var response = await _receiptService.CreateReceipt(receipt);
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return ex switch
+            {
+                ResourceNotFoundException => NotFound(_mapper.Map<ResponseErrorViewModel>(ex)),
+                EntityRuleException => BadRequest(_mapper.Map<ResponseErrorViewModel>(ex)),
+                _ => StatusCode(
+                    StatusCodes.Status500InternalServerError,
+                    new ResponseErrorViewModel
+                    {
+                        Type = "ServerError",
+                        Message = ex.Message
+                    }
+                ),
+            };
+        }
     }
+
+    //[HttpPost]
+    //[Route("referralGuide")]
+    //public async Task<IActionResult> UploadReferralGuid([FromForm] UploadFileDTO upload)
+    //{
+    //    try
+    //    {
+    //        return Ok(await _receiptService.UploadReferralGuide(upload.File));
+    //    }
+    //    catch (Exception ex)
+    //    {
+    //        return StatusCode(
+    //                StatusCodes.Status500InternalServerError,
+    //                new ResponseErrorViewModel
+    //                {
+    //                    Type = "ServerError",
+    //                    Message = ex.Message
+    //                }
+    //        );
+    //    }
+    //}
 
 }
