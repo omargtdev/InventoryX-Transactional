@@ -1,5 +1,6 @@
 ﻿using InventoryX_Transactional.API.MapperProfiles;
 using InventoryX_Transactional.Services;
+using InventoryX_Transactional.Services.Azure;
 using InventoryX_Transactional.Services.Validations;
 
 namespace InventoryX_Transactional.API.Extensions;
@@ -21,6 +22,9 @@ public static class ServicesExtension
         services.AddScoped<IReceiptService, ReceiptService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IReceiptService, ReceiptService>();
+
+
+        services.AddScoped<IAzureFileService, AzureFileService>();
 
         return services;
     }

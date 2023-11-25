@@ -15,6 +15,11 @@ public class ReceiptProductEntityTypeConfiguration : IEntityTypeConfiguration<Re
             .HasPrecision(18, 2)
             .IsRequired();
 
+        builder.Property(r => r.UnitPurchasePrice)
+           .HasColumnType("decimal")
+           .HasPrecision(18, 2)
+           .IsRequired();
+
         builder.Property(r => r.Quantity)
             .IsRequired();
 

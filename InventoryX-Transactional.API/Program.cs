@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using InventoryX_Transactional.API.Extensions;
 using InventoryX_Transactional.Data;
+using Microsoft.Extensions.Azure;
+using InventoryX_Transactional.API.SettingModels;
+using Azure.Storage;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +23,17 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<InventoryXDbContext>(options => {
     options.UseSqlServer(builder.Configuration.GetConnectionString("InventoryxDb"));
 });
+
+// Azure services
+builder.Services.AddAzureClients(clientBuilder =>
+{
+    var blobStorageSettings = builder.Configuration.GetSection("BlobStorage").Get<BlobStorageSettingModel>();
+    clientBuilder.AddBlobServiceClient(
+        new Uri($"https://{blobStorageSettings!.StorageAccount}.blob.core.windows.net"),
+        new StorageSharedKeyCredential(blobStorageSettings.StorageAccount, blobStorageSettings.Key)
+        );
+});
+
 builder.Services.AddRepositories();
 builder.Services.AddServices();
 
