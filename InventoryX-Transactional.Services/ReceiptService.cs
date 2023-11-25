@@ -16,6 +16,7 @@ public class ReceiptService : IReceiptService
     private readonly IProductRepository _productRepository;
     private readonly ReceiptValidationService _validator;
     private readonly IAzureFileService _azureFileService;
+    private readonly IMapper _mapper;
 
     private const string BlobContainerName = "receipts";
 
