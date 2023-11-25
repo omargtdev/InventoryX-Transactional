@@ -7,6 +7,7 @@ public class ProductDTO
     public string Name { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
     public string Brand { get; set; } = string.Empty;
+    public int Stock { get; set; }
     public ProductCategoryDTO Category { get; set; } = new ProductCategoryDTO();
     public ProductWarehouseDTO Warehouse { get; set; } = new ProductWarehouseDTO();
 
