@@ -13,7 +13,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy(name: myAllowSpecificOrigins,
         policy => 
         {
-            policy.WithOrigins("http://localhost:5500") // dev
+            policy.WithOrigins("http://localhost:5500", "https://omargtdev.github.io")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
