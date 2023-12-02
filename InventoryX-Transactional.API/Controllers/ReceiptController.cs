@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using InventoryX_Transactional.API.ViewModels;
-using InventoryX_Transactional.API.ViewModels.Receipt;
 using InventoryX_Transactional.Services;
 using InventoryX_Transactional.Services.DTOs.Receipt;
 using InventoryX_Transactional.Services.Exceptions;
@@ -25,7 +24,8 @@ public class ReceiptController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetReceipts()
     {
-        return Ok();
+        var receipts = await _receiptService.GetReceipts();
+        return Ok(receipts);
     }
 
     [HttpGet]
