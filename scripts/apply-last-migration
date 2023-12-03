@@ -1,0 +1,3 @@
+#!/bin/bash
+
+dotnet dotnet-ef database update -s ../InventoryX-Transactional.API -p ../InventoryX-Transactional.Data

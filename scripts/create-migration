@@ -1,0 +1,5 @@
+#!/bin/bash
+
+[ -z $1 ] && echo "Put a name for the migration" && exit 1
+
+dotnet dotnet-ef migrations add $1 -p ../InventoryX-Transactional.Data -s ../InventoryX-Transactional.API
