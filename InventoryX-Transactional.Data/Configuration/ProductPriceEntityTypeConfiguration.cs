@@ -30,7 +30,6 @@ public class ProductPriceEntityTypeConfiguration : IEntityTypeConfiguration<Prod
             .IsRequired();
 
         builder.Property(p => p.CreatedAt)
-            .HasDefaultValue(DateTime.Now)
             .IsRequired();
 
         builder.ToTable(nameof(ProductPrice));

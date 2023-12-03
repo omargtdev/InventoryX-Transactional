@@ -20,7 +20,6 @@ public class ReceiptEntityTypeConfiguration : IEntityTypeConfiguration<Receipt>
             .IsRequired();
 
         builder.Property(r => r.CreatedAt)
-            .HasDefaultValue(DateTime.Now)
             .IsRequired();
 
         builder
