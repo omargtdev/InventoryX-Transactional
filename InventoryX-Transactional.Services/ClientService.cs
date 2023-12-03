@@ -69,7 +69,7 @@ public class ClientService : IClientService
             throw new EmailAlreadyExistForClientException("The email has already been taken.");
 
         var clientToCreate  = _mapper.Map<Client>(client);
-        clientToCreate.CreatedBy = ""; // For now
+        clientToCreate.CreatedBy = "System";
 
         var clientCreated = await _clientRepository.AddAsync(clientToCreate);
         await _clientRepository.SaveAsync();
