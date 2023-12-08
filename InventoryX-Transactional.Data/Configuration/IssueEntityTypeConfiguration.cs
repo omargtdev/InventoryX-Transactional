@@ -8,7 +8,7 @@ public class IssueEntityTypeConfiguration : IEntityTypeConfiguration<Issue>
 {
     public void Configure(EntityTypeBuilder<Issue> builder)
     {
-        builder.HasKey(r => r.ReceiptId);
+        builder.HasKey(r => r.IssueId);
 
         builder.Property(r => r.CreatedAt);
 

@@ -2,7 +2,7 @@
 
 public class Issue
 {
-    public Guid ReceiptId { get; set; }
+    public Guid IssueId { get; set; }
     public string? Notes { get; set; }
     public string CreatedBy { get; set; }
     public DateTime CreatedAt { get; set; }
