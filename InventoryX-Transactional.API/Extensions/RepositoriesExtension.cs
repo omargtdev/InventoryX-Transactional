@@ -16,6 +16,7 @@ public static class RepositoriesExtension
         services.AddScoped<IGenericRepository<Warehouse>, GenericRepository<Warehouse>>();
         services.AddScoped<IGenericRepository<Product>, GenericRepository<Product>>();
         services.AddScoped<IReceiptRepository, ReceiptRepository>();
+        services.AddScoped<IIssueRepository, IssueRepository>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         services.AddScoped<IClientRepository, ClientRepository>();

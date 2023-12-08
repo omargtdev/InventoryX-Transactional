@@ -14,6 +14,7 @@ public static class ServicesExtension
         services.AddScoped<ProductValidationService>();
         services.AddScoped<ProviderValidationService>();
         services.AddScoped<ReceiptValidationService>();
+        services.AddScoped<ClientValidationService>();
 
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IProviderService, ProviderService>();
