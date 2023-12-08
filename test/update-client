@@ -1,0 +1,21 @@
+#!/bin/bash
+
+client_id='3ee286d6-42ff-40bb-a36d-9894baba0a5d'
+ssl_endpoint="https://localhost:7290/clients/$client_id"
+
+body='{
+    "name": "Omarcin Outlook 2 edited", 
+    "documentType": 1, 
+    "documentNumber": "51234292", 
+    "email": "omarcin.cin@gmail.com", 
+    "phone": "981321230",
+    "address": "my super addrses 2 edited",
+    "isLegal": false
+}'
+
+echo $body
+
+curl -X PUT -v --insecure $ssl_endpoint \
+     -H "Content-Type: application/json" \
+     -d "$(echo $body)" | jq
+
