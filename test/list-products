@@ -1,0 +1,6 @@
+#!/bin/bash
+
+ssl_endpoint='https://localhost:7290/products'
+
+curl -X GET -v --insecure $ssl_endpoint \
+     -H "Accept: application/json" | jq

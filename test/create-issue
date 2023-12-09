@@ -1,0 +1,29 @@
+#!/bin/bash
+
+ssl_endpoint='https://localhost:7290/issues'
+body='{
+    "client": {
+        "name": "Angel Sarazona",
+        "email": "angel.sara.zona@gmail.com",
+        "phone": "981232122",
+        "documentType": 1,
+        "documentNumber": "87231232",
+        "isLegal": false,
+        "address": null
+    },
+    "notes": null,
+    "products": [
+        {
+            "code": "VID-666",
+            "count": 5
+        },
+        {
+            "code": "TNVCEX5",
+            "count": 10
+        }
+    ]
+}'
+
+curl -v --insecure $ssl_endpoint \
+     -H "Content-Type: application/json" \
+     -d "$(echo $body)" | jq

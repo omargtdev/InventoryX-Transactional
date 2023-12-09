@@ -15,6 +15,7 @@ public class InventoryXDbContext : DbContext
     public DbSet<ProductPrice> ProductsPrices { get; set; }
     public DbSet<Receipt> Receipts { get; set; }
     public DbSet<ReceiptProduct> ReceiptsProducts { get; set; }
+    public DbSet<Issue> Issues { get; set; }
    
     protected override void OnModelCreating(ModelBuilder modelBuilder) 
     {
@@ -27,4 +28,4 @@ public class InventoryXDbContext : DbContext
         //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReceiptEntityTypeConfiguration).Assembly);
         //modelBuilder.ApplyConfigurationsFromAssembly(typeof(ReceiptProductEntityTypeConfiguration).Assembly);
     }
-    }
+}

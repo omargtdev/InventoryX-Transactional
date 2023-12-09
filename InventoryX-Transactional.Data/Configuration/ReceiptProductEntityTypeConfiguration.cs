@@ -27,7 +27,6 @@ public class ReceiptProductEntityTypeConfiguration : IEntityTypeConfiguration<Re
             .IsRequired();
 
         builder.Property(r => r.CreatedAt)
-            .HasDefaultValue(DateTime.Now)
             .IsRequired();
 
         builder.ToTable(nameof(ReceiptProduct));

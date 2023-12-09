@@ -13,8 +13,7 @@ public class Client : BaseEntity
     public string? Address { get; set; }
     public bool IsLegal { get; set; }
 
-
-    // public List<Issue> Issues { get; set; } = new();
+    public List<Issue> Issues { get; set; } = new();
 }
 
 public enum DocumentType 

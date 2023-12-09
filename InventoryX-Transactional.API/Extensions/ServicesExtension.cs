@@ -14,6 +14,8 @@ public static class ServicesExtension
         services.AddScoped<ProductValidationService>();
         services.AddScoped<ProviderValidationService>();
         services.AddScoped<ReceiptValidationService>();
+        services.AddScoped<ClientValidationService>();
+        services.AddScoped<IssueValidationService>();
 
         services.AddScoped<IClientService, ClientService>();
         services.AddScoped<IProviderService, ProviderService>();
@@ -22,6 +24,7 @@ public static class ServicesExtension
         services.AddScoped<IReceiptService, ReceiptService>();
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<IReceiptService, ReceiptService>();
+        services.AddScoped<IIssueService, IssueService>();
 
 
         services.AddScoped<IAzureFileService, AzureFileService>();
