@@ -6,6 +6,6 @@ namespace InventoryX_Transactional.Repository;
 public interface IIssueRepository
 {
     Task<IEnumerable<Issue>> GetIssuesAsync(Expression<Func<Issue, bool>>? condition = null);
-    Task<Issue?> GetIssueAsync(Guid id);
+    Task<Issue?> GetByIdAsync(Guid id);
     Task AddIssueAsync(Issue issue);
 }

@@ -4,6 +4,7 @@ using InventoryX_Transactional.Repository;
 using InventoryX_Transactional.Services.DTOs.Client;
 using InventoryX_Transactional.Services.Exceptions;
 using Microsoft.Extensions.Logging;
+using InventoryX_Transactional.Services.Validations;
 
 namespace InventoryX_Transactional.Services;
 

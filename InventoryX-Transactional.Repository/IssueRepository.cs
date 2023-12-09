@@ -19,7 +19,7 @@ public class IssueRepository : IIssueRepository
         await _context.Issues.AddAsync(issue);
     }
 
-    public async Task<Issue?> GetIssueAsync(Guid id)
+    public async Task<Issue?> GetByIdAsync(Guid id)
     {
         return await _context.Issues.FirstOrDefaultAsync(x => x.IssueId == id);
     }

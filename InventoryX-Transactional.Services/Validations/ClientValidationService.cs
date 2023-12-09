@@ -3,7 +3,7 @@ using InventoryX_Transactional.Extensions;
 using InventoryX_Transactional.Repository.Common;
 using InventoryX_Transactional.Services.DTOs.Client;
 
-namespace InventoryX_Transactional.Services;
+namespace InventoryX_Transactional.Services.Validations;
 
 public class ClientValidationService
 {
@@ -14,28 +14,32 @@ public class ClientValidationService
         _clientRepository = clientRepository;
     }
 
+    // Consider implement generic interface with the following methods:
+    // interface ICreateAndUpdateOperationValidation<TModel>
+    // - ValidateForCreateAsync
+    // - ValidateForUpdateAsync
     public async Task<NewClientDTO> ValidateForCreateAsync(NewClientDTO client)
     {
         if(client.Name.IsNullOrEmptyOrWhiteSpace())
         {
-            throw new EntityRuleException($"The {nameof(client.Name)} cannot be empty.");
+            throw new EntityRuleException($"The {nameof(client.Name)} of the client of the client cannot be empty.");
         }
 
         if(!client.Email.IsValidEmail())
         {
-            throw new EntityRuleException($"The {nameof(client.Email)} is invalid.");
+            throw new EntityRuleException($"The {nameof(client.Email)} of the client of the client is invalid.");
         }
 
         if(client.DocumentNumber.IsNullOrEmptyOrWhiteSpace() || !client.DocumentNumber.HasOnlyNumbers())
         {
-            throw new EntityRuleException($"The {nameof(client.DocumentNumber)} is invalid.");
+            throw new EntityRuleException($"The {nameof(client.DocumentNumber)} of the client of the client is invalid.");
         }
 
         ValidateDocumentTypeLength(client.DocumentType, client.DocumentNumber);
 
         if(!client.Phone.IsValidPhoneNumber())
         {
-            throw new EntityRuleException($"The {nameof(client.Phone)} is invalid");
+            throw new EntityRuleException($"The {nameof(client.Phone)} of the client of the client is invalid");
         }
 
         if(client.IsLegal)
@@ -45,17 +49,17 @@ public class ClientValidationService
 
         if(await DocumentNumberAlreadyExistAsync(client.DocumentNumber))
         {
-            throw new EntityRuleException($"The document number '{client.DocumentNumber}' has already been taken.");
+            throw new EntityRuleException($"The document number '{client.DocumentNumber}' of the client has already been taken.");
         }
 
         if(await EmailAlreadyExistAsync(client.Email))
         {
-            throw new EntityRuleException($"The email '{client.Email}' has already been taken.");
+            throw new EntityRuleException($"The email '{client.Email}' of the client has already been taken.");
         }
 
         if(await PhoneNumberAlreadyExistAsync(client.Phone))
         {
-            throw new EntityRuleException($"The phone '{client.Phone}' has already been taken.");
+            throw new EntityRuleException($"The phone '{client.Phone}' of the client has already been taken.");
         }
 
         return client;
@@ -67,24 +71,24 @@ public class ClientValidationService
     {
         if(client.Name.IsNullOrEmptyOrWhiteSpace())
         {
-            throw new EntityRuleException($"The {nameof(client.Name)} cannot be empty.");
+            throw new EntityRuleException($"The {nameof(client.Name)} of the client cannot be empty.");
         }
 
         if(!client.Email.IsValidEmail())
         {
-            throw new EntityRuleException($"The {nameof(client.Email)} is invalid.");
+            throw new EntityRuleException($"The {nameof(client.Email)} of the client is invalid.");
         }
 
         if(client.DocumentNumber.IsNullOrEmptyOrWhiteSpace() || !client.DocumentNumber.HasOnlyNumbers())
         {
-            throw new EntityRuleException($"The {nameof(client.DocumentNumber)} is invalid.");
+            throw new EntityRuleException($"The {nameof(client.DocumentNumber)} of the client is invalid.");
         }
 
         ValidateDocumentTypeLength(client.DocumentType, client.DocumentNumber);
 
         if(!client.Phone.IsValidPhoneNumber())
         {
-            throw new EntityRuleException($"The {nameof(client.Phone)} is invalid");
+            throw new EntityRuleException($"The {nameof(client.Phone)} of the client is invalid");
         }
 
         if(client.IsLegal)
@@ -94,17 +98,17 @@ public class ClientValidationService
 
         if(await DocumentNumberAlreadyExistAsync(client.DocumentNumber, client.ClientId))
         {
-            throw new EntityRuleException($"The document number '{client.DocumentNumber}' has already been taken.");
+            throw new EntityRuleException($"The document number '{client.DocumentNumber}' of the client has already been taken.");
         }
 
         if(await EmailAlreadyExistAsync(client.Email, client.ClientId))
         {
-            throw new EntityRuleException($"The email '{client.Email}' has already been taken.");
+            throw new EntityRuleException($"The email '{client.Email}' of the client has already been taken.");
         }
 
         if(await PhoneNumberAlreadyExistAsync(client.Phone, client.ClientId))
         {
-            throw new EntityRuleException($"The phone '{client.Phone}' has already been taken.");
+            throw new EntityRuleException($"The phone '{client.Phone}' of the client has already been taken.");
         }
 
         return client;
@@ -133,7 +137,7 @@ public class ClientValidationService
                     );
                 break;
             default:
-                throw new ArgumentOutOfRangeException($"Not valid value for {nameof(documentTypeClient)}.");
+                throw new ArgumentOutOfRangeException($"Not valid value for {nameof(documentTypeClient)} of the client.");
         }
     }
 

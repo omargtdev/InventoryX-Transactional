@@ -1,4 +1,6 @@
-﻿namespace InventoryX_Transactional.Services;
+﻿using InventoryX_Transactional.Services.DTOs.Issue;
+
+namespace InventoryX_Transactional.Services;
 
 public interface IIssueService
 {

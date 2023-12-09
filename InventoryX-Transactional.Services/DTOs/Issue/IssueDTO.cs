@@ -1,4 +1,4 @@
-﻿namespace InventoryX_Transactional.Services;
+﻿namespace InventoryX_Transactional.Services.DTOs.Issue;
 
 public class IssueDTO
 {

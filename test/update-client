@@ -13,8 +13,6 @@ body='{
     "isLegal": false
 }'
 
-echo $body
-
 curl -X PUT -v --insecure $ssl_endpoint \
      -H "Content-Type: application/json" \
      -d "$(echo $body)" | jq

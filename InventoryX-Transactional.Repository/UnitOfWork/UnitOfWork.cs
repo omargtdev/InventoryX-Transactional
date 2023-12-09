@@ -14,7 +14,7 @@ public class UnitOfWork : IUnitOfWork
         IGenericRepository<Provider> providerRepository,
         IGenericRepository<Category> categoryRepository,
         IGenericRepository<Warehouse> warehouseRepository,
-        IGenericRepository<Product> productRepository,
+        IProductRepository productRepository,
         IReceiptRepository receiptRepository,
         IIssueRepository issueRepository)
     {
@@ -32,7 +32,7 @@ public class UnitOfWork : IUnitOfWork
     public IGenericRepository<Provider> Providers { get; }
     public IGenericRepository<Category> Categories { get; }
     public IGenericRepository<Warehouse> Warehouses { get; }
-    public IGenericRepository<Product> Products { get; }
+    public IProductRepository Products { get; }
     public IReceiptRepository Receipts { get; }
     public IIssueRepository Issues { get; }
     public async Task SaveAsync() => await _context.SaveChangesAsync();
