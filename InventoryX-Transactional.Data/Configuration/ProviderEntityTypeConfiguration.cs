@@ -40,7 +40,6 @@ public class ProviderEntityTypeConfiguration : IEntityTypeConfiguration<Provider
             .IsRequired();
 
         builder.Property(c => c.CreatedAt)
-            .HasDefaultValue(DateTime.Now)
             .IsRequired();
 
         builder.ToTable(nameof(Provider));

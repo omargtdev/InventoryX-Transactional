@@ -45,7 +45,6 @@ public class ClientEntityTypeConfiguration : IEntityTypeConfiguration<Client>
             .IsRequired();
 
         builder.Property(c => c.CreatedAt)
-            .HasDefaultValue(DateTime.Now)
             .IsRequired();
 
         builder.ToTable(nameof(Client));

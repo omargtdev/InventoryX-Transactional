@@ -37,7 +37,6 @@ public class WarehouseEntityTypeConfiguration : IEntityTypeConfiguration<Warehou
             .IsRequired();
 
         builder.Property(c => c.CreatedAt)
-            .HasDefaultValue(DateTime.Now)
             .IsRequired();
 
         builder.ToTable(nameof(Warehouse));

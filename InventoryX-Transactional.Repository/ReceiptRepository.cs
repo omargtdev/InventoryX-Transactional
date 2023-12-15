@@ -21,8 +21,8 @@ public class ReceiptRepository : IReceiptRepository
     public async Task<IEnumerable<Receipt>> GetReceiptsAsync(Expression<Func<Receipt, bool>>? condition = null)
     {
         if(condition is null)
-            return await _context.Receipts.ToListAsync();
+            return await _context.Receipts.Include(r => r.Provider).ToListAsync();
 
-        return await _context.Receipts.Where(condition).ToListAsync();
+        return await _context.Receipts.Include(r => r.Provider).Where(condition).ToListAsync();
     }
 }

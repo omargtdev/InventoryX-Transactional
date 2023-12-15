@@ -93,9 +93,10 @@ public class ReceiptService : IReceiptService
         throw new NotImplementedException();
     }
 
-    public Task<List<ReceiptDTO>> GetReceipts()
+    public async Task<List<ReceiptDTO>> GetReceipts()
     {
-        throw new NotImplementedException();
+        var receipts = await _unitOfWork.Receipts.GetReceiptsAsync();
+        return _mapper.Map<List<ReceiptDTO>>(receipts);
     }
 
     public async Task<BlobFileDTO> UploadReferralGuide(IFormFile file)

@@ -51,5 +51,10 @@ public class DTOMapperProfile : Profile
             .ForPath(dest => dest.Warehouse.Name, opt => opt.MapFrom(src => src.Warehouse.Name))
             .ForPath(dest => dest.Price.LastReceiptPrice, opt => opt.MapFrom(src => src.ProductPrice.LastReceiptPrice))
             .ForPath(dest => dest.Price.LastIssuePrice, opt => opt.MapFrom(src => src.ProductPrice.LastIssuePrice));
+
+        CreateMap<Receipt, ReceiptDTO>()
+            .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.ReceiptId))
+            .ForMember(dest => dest.ProviderName, opt => opt.MapFrom(src => src.Provider.BusinessName))
+            .ForMember(dest => dest.ReferralGuideUrl, opt => opt.MapFrom(src => $"https://omargtdevstorage.blob.core.windows.net/receipts/{src.ReferralGuideFileName}"));
     }
 }

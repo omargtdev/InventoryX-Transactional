@@ -10,5 +10,4 @@ public class UpdateClientDTO
     public string Phone { get; set; } = null!;
     public string? Address { get; set; }
     public bool IsLegal { get; set; }
-    public string ActionBy { get; set; }
 }

@@ -14,8 +14,9 @@ public class UnitOfWork : IUnitOfWork
         IGenericRepository<Provider> providerRepository,
         IGenericRepository<Category> categoryRepository,
         IGenericRepository<Warehouse> warehouseRepository,
-        IGenericRepository<Product> productRepository,
-        IReceiptRepository receiptRepository) 
+        IProductRepository productRepository,
+        IReceiptRepository receiptRepository,
+        IIssueRepository issueRepository)
     {
         _context = context;
         Clients = clientRepository;
@@ -24,14 +25,16 @@ public class UnitOfWork : IUnitOfWork
         Warehouses = warehouseRepository;
         Products = productRepository;
         Receipts = receiptRepository;
+        Issues = issueRepository;
     }
 
     public IGenericRepository<Client> Clients { get; }
     public IGenericRepository<Provider> Providers { get; }
     public IGenericRepository<Category> Categories { get; }
     public IGenericRepository<Warehouse> Warehouses { get; }
-    public IGenericRepository<Product> Products { get; }
+    public IProductRepository Products { get; }
     public IReceiptRepository Receipts { get; }
+    public IIssueRepository Issues { get; }
     public async Task SaveAsync() => await _context.SaveChangesAsync();
 
     public void Dispose()

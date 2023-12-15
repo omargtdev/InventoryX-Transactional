@@ -10,6 +10,7 @@ public interface IUnitOfWork : ISaveRepository, IDisposable
     IGenericRepository<Provider> Providers { get; }
     IGenericRepository<Category> Categories { get; }
     IGenericRepository<Warehouse> Warehouses { get; }
-    IGenericRepository<Product> Products { get; }
+    IProductRepository Products { get; }
     IReceiptRepository Receipts { get; }
+    IIssueRepository Issues { get; }
 }

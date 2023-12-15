@@ -4,6 +4,7 @@ using InventoryX_Transactional.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventoryX_Transactional.Data.Migrations
 {
     [DbContext(typeof(InventoryXDbContext))]
-    partial class InventoryXDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231202230043_IssuesAdded")]
+    partial class IssuesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -135,7 +138,7 @@ namespace InventoryX_Transactional.Data.Migrations
 
             modelBuilder.Entity("InventoryX_Transactional.Data.Models.Issue", b =>
                 {
-                    b.Property<Guid>("IssueId")
+                    b.Property<Guid>("ReceiptId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -151,7 +154,7 @@ namespace InventoryX_Transactional.Data.Migrations
                     b.Property<string>("Notes")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("IssueId");
+                    b.HasKey("ReceiptId");
 
                     b.HasIndex("ClientId");
 
