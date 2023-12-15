@@ -48,6 +48,8 @@ public class DTOMapperProfile : Profile
             .ForPath(dest => dest.Category.Id, opt => opt.MapFrom(src => src.Category.CategoryId))
             .ForPath(dest => dest.Category.Name, opt => opt.MapFrom(src => src.Category.Name))
             .ForPath(dest => dest.Warehouse.Id, opt => opt.MapFrom(src => src.Warehouse.WarehouseId))
-            .ForPath(dest => dest.Warehouse.Name, opt => opt.MapFrom(src => src.Warehouse.Name));
+            .ForPath(dest => dest.Warehouse.Name, opt => opt.MapFrom(src => src.Warehouse.Name))
+            .ForPath(dest => dest.Price.LastReceiptPrice, opt => opt.MapFrom(src => src.ProductPrice.LastReceiptPrice))
+            .ForPath(dest => dest.Price.LastIssuePrice, opt => opt.MapFrom(src => src.ProductPrice.LastIssuePrice));
     }
 }

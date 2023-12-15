@@ -10,6 +10,7 @@ public class ProductDTO
     public int Stock { get; set; }
     public ProductCategoryDTO Category { get; set; } = new ProductCategoryDTO();
     public ProductWarehouseDTO Warehouse { get; set; } = new ProductWarehouseDTO();
+    public ProductPriceDTO Price { get; set; } = new ProductPriceDTO();
 
 }
 
@@ -25,4 +26,10 @@ public class ProductWarehouseDTO
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
+}
+
+public class ProductPriceDTO
+{
+    public decimal LastReceiptPrice { get; set; }
+    public decimal LastIssuePrice { get; set; }
 }

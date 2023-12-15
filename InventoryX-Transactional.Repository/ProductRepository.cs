@@ -23,6 +23,7 @@ public class ProductRepository : GenericRepository<Product>, IProductRepository
             .Where(p => !p.IsDeleted)
             .Include(p => p.Warehouse)
             .Include(p => p.Category)
+            .Include(p => p.ProductPrice)
             .ToListAsync();
     }
 
